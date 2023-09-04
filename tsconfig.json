@@ -11,6 +11,8 @@
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
       "@/l10n/*": ["l10n/*"],
+      "@/l10n/*": ["l10n/*"],
+      "@/store/*": ["store/*"],
     },
 
     /* Bundler mode */

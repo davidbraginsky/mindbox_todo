@@ -12,6 +12,7 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, './src/utils'),
       '@types': path.resolve(__dirname, './src/types'),
       '@l10n': path.resolve(__dirname, './src/l10n'),
+      '@store': path.resolve(__dirname, './src/store'),
     }
   }
 })
