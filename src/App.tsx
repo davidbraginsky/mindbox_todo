@@ -12,15 +12,17 @@ function App() {
   }, []);
 
   const onSubmitForm: DefaultOnClickFunc = useCallback((e) => {
-    e.preventDefault()
-    console.log("form was submitted")
-  }, [])
+    e.preventDefault();
+    console.log("form was submitted");
+  }, []);
 
   return (
     <main>
       <BaseForm onSubmit={onSubmitForm}>
         <BaseInput />
-        <BaseButton type="submit">{LabelsProvider.ADD}</BaseButton>
+        <BaseButton onClick={onAddTodo} type="submit">
+          {LabelsProvider.ADD}
+        </BaseButton>
       </BaseForm>
       <TodoList />
     </main>
