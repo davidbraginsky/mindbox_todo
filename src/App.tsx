@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useCallback } from "react";
+import TodoList from "@/components/todo/TodoList/TodoList";
+import BaseInput from "@/components/base/BaseInput/BaseInput";
+import BaseButton from "@/components/base/BaseButton/BaseButton";
+import BaseForm from "@/components/base/BaseForm/BaseForm";
+import { LabelsProvider } from "@/l10n/LabelsProvider";
+import { DefaultOnClickFunc } from "@/types/types";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const onAddTodo = useCallback(() => {
+    console.log("adding todo");
+  }, []);
+
+  const onSubmitForm: DefaultOnClickFunc = useCallback((e) => {
+    e.preventDefault();
+    console.log("form was submitted");
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main>
+      <BaseForm onSubmit={onSubmitForm}>
+        <BaseInput />
+        <BaseButton onClick={onAddTodo} type="submit">
+          {LabelsProvider.ADD}
+        </BaseButton>
+      </BaseForm>
+      <TodoList />
+    </main>
+  );
 }
 
-export default App
+export default App;
