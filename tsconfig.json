@@ -9,7 +9,8 @@
     "paths": {
       "@/utils/*": ["utils/*"],
       "@/components/*": ["components/*"],
-      "@/types/*": ["types/*"]
+      "@/types/*": ["types/*"],
+      "@/l10n/*": ["l10n/*"],
     },
 
     /* Bundler mode */

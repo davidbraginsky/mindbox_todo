@@ -7,12 +7,18 @@ type BaseButtonProps = {
   className?: string;
   type?: "button" | "submit";
   children?: ReactNode;
+  disabled?: boolean;
   onClick?: DefaultOnClickFunc;
 };
 
-const BaseButton: FC<BaseButtonProps> = ({ className = EMPTY_STRING, type = "button", children, onClick }) => {
+const BaseButton: FC<BaseButtonProps> = ({
+  className = EMPTY_STRING,
+  type = "button",
+  children,
+  ...rest
+}) => {
   return (
-    <button onClick={onClick} className={className} type={type}>
+    <button className={className} type={type} {...rest}>
       {children}
     </button>
   );
