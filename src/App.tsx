@@ -4,7 +4,7 @@ import BaseInput from "@/components/base/BaseInput/BaseInput";
 import BaseButton from "@/components/base/BaseButton/BaseButton";
 import BaseForm from "@/components/base/BaseForm/BaseForm";
 import { LabelsProvider } from "@/l10n/LabelsProvider";
-import { DefaultOnClickFunc } from "./types/types";
+import { DefaultOnClickFunc } from "@/types/types";
 
 function App() {
   const onAddTodo = useCallback(() => {
