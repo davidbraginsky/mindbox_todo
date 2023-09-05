@@ -1,6 +1,6 @@
 // import styles from "./BaseButton.module.css";
 import { FC, ReactNode } from "react";
-import { EMPTY_STRING } from "@/utils/constants";
+import { EMPTY_STRING } from "@/utils/Constants";
 import type { DefaultOnClickFunc } from "@/types/types";
 
 type BaseButtonProps = {
@@ -11,12 +11,7 @@ type BaseButtonProps = {
   onClick?: DefaultOnClickFunc;
 };
 
-const BaseButton: FC<BaseButtonProps> = ({
-  className = EMPTY_STRING,
-  type = "button",
-  children,
-  ...rest
-}) => {
+const BaseButton: FC<BaseButtonProps> = ({ className = EMPTY_STRING, type = "button", children, ...rest }) => {
   return (
     <button className={className} type={type} {...rest}>
       {children}

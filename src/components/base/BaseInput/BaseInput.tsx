@@ -1,6 +1,6 @@
 // import styles from "./BaseInput.module.css";
 import { FC } from "react";
-import { EMPTY_STRING } from "@/utils/constants";
+import { EMPTY_STRING } from "@/utils/Constants";
 import { DefaultOnChangeFunc } from "@/types/types";
 
 type BaseInputProps = {

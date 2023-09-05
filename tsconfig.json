@@ -12,6 +12,7 @@
       "@/types/*": ["types/*"],
       "@/L10N/*": ["L10N/*"],
       "@/store/*": ["store/*"],
+      "@/hooks/*": ["hooks/*"],
     },
 
     /* Bundler mode */
