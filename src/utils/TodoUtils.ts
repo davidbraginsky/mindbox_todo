@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import MiscUtils from "@/utils/MiscUtils";
+import { TodoData } from "@/store/features/todo/todoSlice";
 
 type TodoCtxtData = {
   onAddTodo: OnAddTodoFunc;
@@ -10,6 +11,7 @@ type TodoCtxtData = {
 export type OnAddTodoFunc = (text: string) => void;
 export type OnRemoveTodoFunc = (id: string) => void;
 export type OnToggleStatusFunc = (id: string) => void;
+export type OnLoadTodoListFunc = (list: TodoData[]) => void;
 
 export const TodoCtxt = createContext<TodoCtxtData>({
   onAddTodo: MiscUtils.dummyFunc,
