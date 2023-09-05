@@ -13,6 +13,7 @@ export default defineConfig({
       '@types': path.resolve(__dirname, './src/types'),
       '@L10N': path.resolve(__dirname, './src/L10N'),
       '@store': path.resolve(__dirname, './src/store'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
     }
   }
 })

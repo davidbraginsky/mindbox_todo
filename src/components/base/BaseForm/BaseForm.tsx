@@ -1,6 +1,6 @@
 // import styles from "./BaseForm.module.css";
 import { FC, ReactNode } from "react";
-import { EMPTY_STRING } from "@/utils/constants";
+import { EMPTY_STRING } from "@/utils/Constants";
 import type { DefaultOnClickFunc } from "@/types/types";
 
 type BaseFormProps = {
@@ -11,7 +11,11 @@ type BaseFormProps = {
 };
 
 const BaseForm: FC<BaseFormProps> = ({ className = EMPTY_STRING, children, onSubmit, ...rest }) => {
-  return <form onSubmit={onSubmit} {...rest}>{children}</form>;
+  return (
+    <form onSubmit={onSubmit} {...rest}>
+      {children}
+    </form>
+  );
 };
 
 export default BaseForm;
