@@ -4,6 +4,7 @@ import type { StoreType } from "@/store/StoreType";
 import type { TodoData } from "@/store/features/todo/todoSlice";
 import TodoList from "@/components/todo/TodoList/TodoList";
 import TodoForm from "@/components/todo/TodoForm/TodoForm";
+import Layout from "@/components/layout/Layout/Layout";
 import useTodoAPI from "@/hooks/useTodoAPI";
 import { TodoCtxt } from "@/utils/TodoUtils";
 
@@ -25,12 +26,12 @@ function App() {
   }, [onAddTodo, onRemoveTodo, onToggleStatus]);
 
   return (
-    <main>
+    <Layout>
       <TodoCtxt.Provider value={TodoCtxtValue}>
         <TodoForm />
         <TodoList list={todoList} />
       </TodoCtxt.Provider>
-    </main>
+    </Layout>
   );
 }
 

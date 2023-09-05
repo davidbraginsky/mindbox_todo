@@ -4,6 +4,7 @@ import { TodoCtxt } from "@/utils/TodoUtils";
 import BaseInput from "@/components/base/BaseInput/BaseInput";
 import BaseButton from "@/components/base/BaseButton/BaseButton";
 import BaseForm from "@/components/base/BaseForm/BaseForm";
+import Row from "@/components/layout/Row/Row";
 import { LabelsProvider } from "@/L10N/LabelsProvider";
 import type { DefaultOnChangeFunc, DefaultOnClickFunc } from "@/types/types";
 import { EMPTY_STRING } from "@/utils/Constants";
@@ -28,8 +29,10 @@ const TodoForm: FC<TodoFormProps> = ({ className = EMPTY_STRING }) => {
 
   return (
     <BaseForm onSubmit={onSubmitForm}>
-      <BaseInput name="text" onChange={onChangeText} value={text} />
-      <BaseButton type="submit">{LabelsProvider.ADD}</BaseButton>
+      <Row className={styles.inputRow}>
+        <BaseInput onChange={onChangeText} value={text} placeholder={LabelsProvider.DO_SOMETHING} />
+        <BaseButton type="submit">{LabelsProvider.ADD}</BaseButton>
+      </Row>
     </BaseForm>
   );
 };
