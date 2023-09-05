@@ -1,20 +1,21 @@
-// import styles from "./TodoList.module.css";
+import styles from "./TodoList.module.css";
 import { FC } from "react";
-import type { Todo } from "@/store/features/todo/todoSlice";
+import type { TodoData } from "@/store/features/todo/todoSlice";
+import Todo from "../Todo/Todo";
 import { EMPTY_STRING } from "@/utils/constants";
 
 type TodoListProps = {
   className?: string;
-  list?: Todo[];
+  list?: TodoData[];
 };
 
 const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [] }) => {
   return (
     <>
       {list.length ? (
-        <ul className={className}>
+        <ul className={`${styles.list} ${className}`}>
           {list.map((todo) => {
-            return <li key={todo.id}>{todo.text}</li>;
+            return <Todo key={todo.id} todo={todo} />;
           })}
         </ul>
       ) : null}
