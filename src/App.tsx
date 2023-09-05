@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
 import type { StoreType } from "@/store/StoreType";
 import type { TodoData } from "@/store/features/todo/todoSlice";
@@ -8,9 +8,13 @@ import useTodoAPI from "@/hooks/useTodoAPI";
 import { TodoCtxt } from "@/utils/TodoUtils";
 
 function App() {
-  const todoList = useSelector<StoreType, TodoData[]>((state: StoreType) => state.todo?.todoList);
+  const { onAddTodo, onRemoveTodo, onToggleStatus, loadTodoList, localTodoList } = useTodoAPI();
 
-  const { onAddTodo, onRemoveTodo, onToggleStatus } = useTodoAPI();
+  useEffect(() => {
+    loadTodoList(localTodoList);
+  }, []);
+
+  const todoList = useSelector<StoreType, TodoData[]>((state: StoreType) => state.todo?.todoList);
 
   const TodoCtxtValue = useMemo(() => {
     return {

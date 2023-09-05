@@ -18,19 +18,12 @@ const todoSlice = createSlice({
   name: "todo",
   initialState: DEFAULT_TODO_STATE,
   reducers: {
-    addTodo: (state, action) => {
-      state.todoList.push({ id: action.payload.id, text: action.payload.text, isCompleted: false });
-    },
-    removeTodo: (state, action) => {
-      state.todoList = state.todoList.filter((todo) => todo.id !== action.payload.id)
-    },
-    toggleStatus: (state, action) => {
-      const index = state.todoList.findIndex((todo) => todo.id === action.payload.id);
-      state.todoList[index].isCompleted = !state.todoList[index].isCompleted;
+    updateList: (state, action) => {
+      state.todoList = action.payload.list;
     },
   },
 });
 
-export const { addTodo, removeTodo, toggleStatus } = todoSlice.actions;
+export const { updateList } = todoSlice.actions;
 
 export default todoSlice.reducer;
