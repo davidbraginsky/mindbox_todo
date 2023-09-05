@@ -10,7 +10,7 @@
       "@/utils/*": ["utils/*"],
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
-      "@/l10n/*": ["l10n/*"],
+      "@/L10N/*": ["L10N/*"],
       "@/store/*": ["store/*"],
     },
 

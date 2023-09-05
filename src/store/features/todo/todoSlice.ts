@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Todo = {
+export type Todo = {
   id: string;
   text: string;
   isCompleted: boolean;
 };
 
-type DefaultTodoState = {
+export type DefaultTodoState = {
   todoList: Todo[];
 };
 
