@@ -1,7 +1,7 @@
 class MiscUtils {
   static dummyFunc = (): void => {};
 
-  static getLocalStorageValue = <T>(key: string, initialValue?: T): any => {
+  static getLocalStorageValue = <T>(key: string, initialValue?: T): T => {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : initialValue;
   };

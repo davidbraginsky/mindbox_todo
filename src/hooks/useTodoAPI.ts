@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
-import { addTodo, removeTodo, toggleStatus, loadList, TodoData } from "@/store/features/todo/todoSlice";
+import { updateList, TodoData } from "@/store/features/todo/todoSlice";
 import type { OnAddTodoFunc, OnRemoveTodoFunc, OnToggleStatusFunc, OnLoadTodoListFunc } from "@/utils/TodoUtils";
 import { TODO_LIST_KEY } from "@/utils/Constants";
 import useLocalStorage from "@/hooks/useLocalStorage";
@@ -23,23 +23,30 @@ const useTodoAPI: UseTodoAPIFunc = () => {
 
   const onAddTodo: OnAddTodoFunc = (text) => {
     const todo = { id: uuid(), text, isCompleted: false };
-    const currentTodoList = MiscUtils.getLocalStorageValue(TODO_LIST_KEY);
-    currentTodoList.push(todo)
+    const currentTodoList = MiscUtils.getLocalStorageValue<TodoData[]>(TODO_LIST_KEY);
+    currentTodoList.push(todo);
     setLocalTodoList(currentTodoList);
-    dispatch(addTodo({ id: uuid(), text }));
+    dispatch(updateList({ list: currentTodoList }));
   };
 
   const onRemoveTodo: OnRemoveTodoFunc = (id) => {
-    dispatch(removeTodo({ id }));
+    const currentTodoList = MiscUtils.getLocalStorageValue<TodoData[]>(TODO_LIST_KEY);
+    const filteredTodoList = currentTodoList.filter((todo) => todo.id !== id);
+    setLocalTodoList(filteredTodoList);
+    dispatch(updateList({ list: filteredTodoList }));
   };
 
   const onToggleStatus: OnToggleStatusFunc = (id) => {
-    dispatch(toggleStatus({ id }));
+    const currentTodoList = MiscUtils.getLocalStorageValue<TodoData[]>(TODO_LIST_KEY);
+    const index = currentTodoList.findIndex((todo) => todo.id === id);
+    currentTodoList[index].isCompleted = !currentTodoList[index].isCompleted;
+    setLocalTodoList(currentTodoList);
+    dispatch(updateList({ list: currentTodoList }));
   };
 
   const loadTodoList: OnLoadTodoListFunc = (list) => {
-    setLocalTodoList(localTodoList)
-    dispatch(loadList({ list }));
+    setLocalTodoList(localTodoList);
+    dispatch(updateList({ list }));
   };
 
   return { onAddTodo, onRemoveTodo, onToggleStatus, loadTodoList, localTodoList };
