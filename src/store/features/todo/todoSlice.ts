@@ -22,7 +22,7 @@ const todoSlice = createSlice({
       state.todoList.push({ id: action.payload.id, text: action.payload.text, isCompleted: false });
     },
     removeTodo: (state, action) => {
-      state.todoList.filter((todo) => todo.id !== action.payload.id);
+      state.todoList = state.todoList.filter((todo) => todo.id !== action.payload.id)
     },
     toggleStatus: (state, action) => {
       const index = state.todoList.findIndex((todo) => todo.id === action.payload.id);

@@ -11,7 +11,7 @@ type TodoListProps = {
 };
 
 const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [] }) => {
-  const { onToggleStatus } = useContext(TodoCtxt);
+  const { onToggleStatus, onRemoveTodo } = useContext(TodoCtxt);
 
   return (
     <>
@@ -24,6 +24,9 @@ const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [] }) =>
                 todo={todo}
                 onToggleCheckbox={() => {
                   onToggleStatus(todo.id);
+                }}
+                onRemove={() => {
+                  onRemoveTodo(todo.id);
                 }}
               />
             );

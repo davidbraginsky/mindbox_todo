@@ -19,12 +19,10 @@ const useTodoAPI: UseTodoAPIFunc = () => {
   };
 
   const onRemoveTodo: OnRemoveTodoFunc = (id) => {
-    console.log("removing");
-    // dispatch(removeTodo({ id: uuid(), text }));
+    dispatch(removeTodo({ id }));
   };
 
   const onToggleStatus: OnToggleStatusFunc = (id) => {
-    console.log("toggling");
     dispatch(toggleStatus({ id }));
   };
 
