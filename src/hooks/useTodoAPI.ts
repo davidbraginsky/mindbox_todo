@@ -1,34 +1,34 @@
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
-import { addTodo, removeTodo } from "@/store/features/todo/todoSlice";
-import type { OnAddTodoFunc } from "@/utils/TodoUtils";
+import { addTodo, removeTodo, toggleStatus } from "@/store/features/todo/todoSlice";
+import type { OnAddTodoFunc, OnRemoveTodoFunc, OnToggleStatusFunc } from "@/utils/TodoUtils";
 
 type UseTodoAPIFunc = () => UseTodoAPIOutput;
 
 type UseTodoAPIOutput = {
   onAddTodo: OnAddTodoFunc;
-  onRemoveTodo: Function;
-  onToggleTodo: Function;
+  onRemoveTodo: OnRemoveTodoFunc;
+  onToggleStatus: OnToggleStatusFunc;
 };
 
 const useTodoAPI: UseTodoAPIFunc = () => {
   const dispatch = useDispatch();
 
-  const onAddTodo = (text: string) => {
+  const onAddTodo: OnAddTodoFunc = (text) => {
     dispatch(addTodo({ id: uuid(), text }));
   };
 
-  const onRemoveTodo = (id: string) => {
+  const onRemoveTodo: OnRemoveTodoFunc = (id) => {
     console.log("removing");
     // dispatch(removeTodo({ id: uuid(), text }));
   };
 
-  const onToggleTodo = (id: string) => {
+  const onToggleStatus: OnToggleStatusFunc = (id) => {
     console.log("toggling");
-    // dispatch(addTodo({ id: uuid(), text }));
+    dispatch(toggleStatus({ id }));
   };
 
-  return { onAddTodo, onRemoveTodo, onToggleTodo };
+  return { onAddTodo, onRemoveTodo, onToggleStatus };
 };
 
 export default useTodoAPI;
