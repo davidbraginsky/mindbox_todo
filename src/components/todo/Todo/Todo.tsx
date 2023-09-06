@@ -19,9 +19,11 @@ const Todo: FC<TodoProps> = ({ className = EMPTY_STRING, todo, onToggleCheckbox,
     <li className={`${styles.todo} ${className}`}>
       <div className={styles.column}>
         <BaseCheckbox checked={todo.isCompleted} onChange={onToggleCheckbox} />
-        <span>{todo.text}</span>
+        <span className={todo.isCompleted ? styles.textCompleted : EMPTY_STRING}>{todo.text}</span>
       </div>
-      <BaseButton onClick={onRemove}>{LabelsProvider.DELETE}</BaseButton>
+      <BaseButton className={styles.btn} onClick={onRemove}>
+        {LabelsProvider.DELETE}
+      </BaseButton>
     </li>
   );
 };
