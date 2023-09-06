@@ -1,27 +1,56 @@
-# React + TypeScript + Vite
+# Mindbox Frontend Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Table of Contents
 
-Currently, two official plugins are available:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [Development](#development)
+  - [Built with](#built-with)
+- [Author](#author)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+### The Challenge
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Users should be able to:
 
-- Configure the top-level `parserOptions` property like this:
+- Add new items to the list
+- Delete items from the list
+- Delete all completed items at once
+- See items on list even after refresh
+- Sort by status
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+Technical requirements:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Project has to be written in React, using TypeScript and React Hooks
+
+### Screenshot
+
+![Screenshot of app](./src/assets/todo_screenshot.png)
+
+### Links
+
+[Live Website](github.com)
+
+## Development
+
+### Built with
+
+- React 18
+- TypeScript 5
+- Vite 
+- Vitest
+
+To deploy app locally download files manually or clone the repository. Install all dependencies using `npm install`. Once all dependencies have been installed deploy app using `npm run dev`.
+
+### Todo
+
+- [] make custom checkbox styles
+- [] add animations
+- [] fix broken test
+
+## Author
+
+[@davidbraginsky](https://github.com/davidbraginsky)
