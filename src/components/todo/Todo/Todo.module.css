@@ -1,0 +1,16 @@
+.todo {
+    background-color: var(--secondary-bg-color);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--light-grey-border);
+}
+
+.column {
+    display: flex;
+    gap: 12px;
+    flex-grow: 1;
+}

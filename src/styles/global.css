@@ -12,6 +12,10 @@
   --primary-bg-color: #191919;
   --secondary-bg-color: #262626;
   --light-blue-color: #696bfe;
+  --light-grey-border: #2c2c2c;
+  --dark-border: #0f0f0f;
+  --text-color: #8b8b8b;
+  --light-text-color: #5a5a5a;
 }
 
 body {

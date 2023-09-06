@@ -16,9 +16,11 @@ type TodoProps = {
 
 const Todo: FC<TodoProps> = ({ className = EMPTY_STRING, todo, onToggleCheckbox, onRemove }) => {
   return (
-    <li>
-      <BaseCheckbox checked={todo.isCompleted} onChange={onToggleCheckbox} />
-      <span>{todo.text}</span>
+    <li className={`${styles.todo} ${className}`}>
+      <div className={styles.column}>
+        <BaseCheckbox checked={todo.isCompleted} onChange={onToggleCheckbox} />
+        <span>{todo.text}</span>
+      </div>
       <BaseButton onClick={onRemove}>{LabelsProvider.DELETE}</BaseButton>
     </li>
   );

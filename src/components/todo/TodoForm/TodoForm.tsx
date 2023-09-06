@@ -30,7 +30,7 @@ const TodoForm: FC<TodoFormProps> = ({ className = EMPTY_STRING }) => {
   return (
     <BaseForm onSubmit={onSubmitForm}>
       <Row className={styles.inputRow}>
-        <BaseInput onChange={onChangeText} value={text} placeholder={LabelsProvider.DO_SOMETHING} />
+        <BaseInput className={styles.input} onChange={onChangeText} value={text} placeholder={LabelsProvider.NEW_TODO} />
         <BaseButton type="submit">{LabelsProvider.ADD}</BaseButton>
       </Row>
     </BaseForm>
