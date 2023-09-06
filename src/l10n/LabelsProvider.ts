@@ -1,4 +1,5 @@
 export const LabelsProvider = {
     ADD: "добавить",
-    DELETE: "удалить"
+    DELETE: "удалить",
+    NEW_TODO: "новая задачка..."
 }

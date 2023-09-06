@@ -1,4 +1,4 @@
-import styles from "./BaseCheckbox.module.css";
+// import styles from "./BaseCheckbox.module.css";
 import { FC } from "react";
 import { EMPTY_STRING } from "@/utils/Constants";
 import type { DefaultOnChangeFunc } from "@/types/types";

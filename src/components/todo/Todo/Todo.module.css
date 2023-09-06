@@ -1,0 +1,25 @@
+.todo {
+  background-color: var(--secondary-bg-color);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--light-grey-border);
+  color: var(--text-color);
+}
+
+.column {
+  display: flex;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.todo .btn {
+  background-color: var(--light-purple);
+}
+
+.textCompleted {
+  text-decoration: line-through;
+}
