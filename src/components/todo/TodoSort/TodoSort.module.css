@@ -1,0 +1,12 @@
+.wrapper {
+  text-align: center;
+}
+
+.wrapper > * + * {
+  margin-left: 8px;
+}
+
+.label {
+  color: var(--grey);
+  cursor: pointer;
+}

@@ -18,3 +18,9 @@ export const TodoCtxt = createContext<TodoCtxtData>({
   onRemoveTodo: MiscUtils.dummyFunc,
   onToggleStatus: MiscUtils.dummyFunc,
 });
+
+export enum TodoSortOption {
+  ALL,
+  ACTIVE,
+  COMPLETED,
+}
