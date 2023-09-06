@@ -1,9 +1,15 @@
 .button {
-  background-color: var(--light-blue-color);
+  background-color: var(--light-blue);
   border: none;
   outline: none;
   color: white;
   padding: 10px;
   border-radius: 6px;
   font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in;
+}
+
+.button:hover {
+  background-color: var(--light-blue-hover);
 }
