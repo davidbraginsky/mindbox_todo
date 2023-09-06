@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { TodoData } from "@/store/features/todo/todoSlice";
 import TodoList from "@/components/todo/TodoList/TodoList";
-import { LabelsProvider } from "@/L10N/LabelsProvider";
 
 const mockTodoList: TodoData[] = [
   { id: "1", text: "hello world", isCompleted: false },

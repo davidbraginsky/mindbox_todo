@@ -9,17 +9,22 @@
 }
 
 :root {
-  --primary-bg-color: #191919;
-  --secondary-bg-color: #262626;
-  --light-blue-color: #696bfe;
+  --primary-bg: #191919;
+  --secondary-bg: #262626;
+  --light-blue: #696bfe;
+  --light-blue-hover: #4d50ee;
   --light-grey-border: #2c2c2c;
   --dark-border: #0f0f0f;
-  --text-color: #8b8b8b;
-  --light-text-color: #5a5a5a;
+  --grey: #8b8b8b;
+  --light-grey: #5a5a5a;
   --light-purple: #8937fc;
+  --light-purple-hover: #711ce7;
+  --light-yellow: #af9e41;
+  --regular-blue: #4f50b3;
+  --error-red: #952323;
 }
 
 body {
-  background-color: var(--primary-bg-color);
+  background-color: var(--primary-bg);
   font-family: "Roboto", sans-serif;
 }

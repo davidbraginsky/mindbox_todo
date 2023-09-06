@@ -17,6 +17,7 @@ const TodoForm: FC<TodoFormProps> = () => {
   const { onAddTodo } = useContext(TodoCtxt);
 
   const [text, setText] = useState<string>(EMPTY_STRING);
+  const [validationMessage, setValidationMessage] = useState<string>(EMPTY_STRING);
 
   const onChangeText: DefaultOnChangeFunc = (e) => {
     setText(e.target.value);
@@ -24,7 +25,13 @@ const TodoForm: FC<TodoFormProps> = () => {
 
   const onSubmitForm: DefaultOnSubmitFunc = (e) => {
     e.preventDefault();
+    if (text === EMPTY_STRING) {
+      setValidationMessage(LabelsProvider.INPUT_MUST_NOT_BE_EMPTY);
+      return;
+    }
     onAddTodo(text);
+    setText(EMPTY_STRING);
+    setValidationMessage(EMPTY_STRING);
   };
 
   return (
@@ -38,6 +45,7 @@ const TodoForm: FC<TodoFormProps> = () => {
         />
         <BaseButton type="submit">{LabelsProvider.ADD}</BaseButton>
       </Row>
+      {validationMessage ? <span className={styles.error}>{validationMessage}</span> : null}
     </BaseForm>
   );
 };
