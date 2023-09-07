@@ -7,7 +7,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/mindbox_todo/",
+  base: "/mindbox_todo",
   plugins: [react()],
   resolve: {
     alias: {
