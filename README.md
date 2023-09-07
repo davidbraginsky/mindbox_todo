@@ -33,7 +33,7 @@ Technical requirements:
 
 ### Links
 
-[Live Website](github.com)
+[Live Website](https://davidbraginsky.github.io/mindbox_todo/)
 
 ## Development
 
