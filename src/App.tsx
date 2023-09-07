@@ -1,4 +1,4 @@
-import styles from "./App.module.css"
+import styles from "./App.module.css";
 import sortBtnStyles from "@/components/todo/TodoSort/SortBtn/SortBtn.module.css";
 import { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -46,11 +46,11 @@ function App() {
         />
         <TodoList list={sortedList} />
         <TodoSort onChangeSort={onChangeSort} sortOption={sortOption} />
-          <Row className={styles.row}>
-            <BaseButton onClick={onClearCompleted} className={sortBtnStyles.btn}>
-              {LabelsProvider.CLEAR_COMPLETED}
-            </BaseButton>
-          </Row>
+        <Row className={styles.row}>
+          <BaseButton onClick={onClearCompleted} className={sortBtnStyles.btn}>
+            {LabelsProvider.CLEAR_COMPLETED}
+          </BaseButton>
+        </Row>
       </TodoCtxt.Provider>
     </Layout>
   );
