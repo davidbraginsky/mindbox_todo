@@ -1,0 +1,15 @@
+.btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--grey);
+}
+
+.btn:hover {
+  background-color: transparent;
+}
+
+.isActive {
+  color: var(--light-blue);
+}

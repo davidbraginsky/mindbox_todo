@@ -13,6 +13,7 @@ export type onChangeSortFunc = (sortOption: TodoSortOption) => void;
 type UseSortedListOutput = {
   onChangeSort: onChangeSortFunc;
   sortedList: TodoData[];
+  sortOption: TodoSortOption;
 };
 
 const useSortedList: UseSortedListFunc = ({ list }) => {
@@ -43,7 +44,7 @@ const useSortedList: UseSortedListFunc = ({ list }) => {
     setSortOption(sortOption);
   };
 
-  return { onChangeSort, sortedList };
+  return { onChangeSort, sortedList, sortOption };
 };
 
 export default useSortedList;

@@ -10,12 +10,13 @@ import useSortedList from "@/hooks/useSortedList";
 type TodoListProps = {
   className?: string;
   list?: TodoData[];
+  useSort?: boolean;
 };
 
-const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [] }) => {
+const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [], useSort = false }) => {
   const { onToggleStatus, onRemoveTodo } = useContext(TodoCtxt);
 
-  const { onChangeSort, sortedList } = useSortedList({ list });
+  const { onChangeSort, sortedList, sortOption } = useSortedList({ list });
 
   return (
     <>
@@ -37,7 +38,7 @@ const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [] }) =>
               );
             })}
           </ul>
-          <TodoSort onChangeSort={onChangeSort} />
+          {useSort ? <TodoSort onChangeSort={onChangeSort} sortOption={sortOption} /> : null}
         </>
       ) : null}
     </>

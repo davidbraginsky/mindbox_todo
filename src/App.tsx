@@ -34,7 +34,7 @@ function App() {
           totalNumberOfTodos={todoList.length}
           numberOfFinishedTodos={todoList.filter((todo) => todo.isCompleted).length}
         />
-        <TodoList list={todoList} />
+        <TodoList list={todoList} useSort />
       </TodoCtxt.Provider>
     </Layout>
   );
