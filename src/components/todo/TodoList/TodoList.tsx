@@ -2,28 +2,24 @@ import styles from "./TodoList.module.css";
 import { FC, useContext } from "react";
 import type { TodoData } from "@/store/features/todo/todoSlice";
 import Todo from "@/components/todo/Todo/Todo";
-import TodoSort from "@/components/todo/TodoSort/TodoSort";
 import { EMPTY_STRING } from "@/utils/Constants";
 import { TodoCtxt } from "@/utils/TodoUtils";
-import useSortedList from "@/hooks/useSortedList";
+
 
 type TodoListProps = {
   className?: string;
   list?: TodoData[];
-  useSort?: boolean;
 };
 
-const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [], useSort = false }) => {
+const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [] }) => {
   const { onToggleStatus, onRemoveTodo } = useContext(TodoCtxt);
-
-  const { onChangeSort, sortedList, sortOption } = useSortedList({ list });
 
   return (
     <>
-      {sortedList.length ? (
+      {list.length ? (
         <>
           <ul className={`${styles.list} ${className}`}>
-            {sortedList.map((todo) => {
+            {list.map((todo) => {
               return (
                 <Todo
                   key={todo.id}
@@ -38,7 +34,6 @@ const TodoList: FC<TodoListProps> = ({ className = EMPTY_STRING, list = [], useS
               );
             })}
           </ul>
-          {useSort ? <TodoSort onChangeSort={onChangeSort} sortOption={sortOption} /> : null}
         </>
       ) : null}
     </>

@@ -9,4 +9,5 @@ export const LabelsProvider = {
   ALL: "Все",
   ONLY_ACTIVE: "Невыполненные",
   ONLY_COMPLETED: "Выполненные",
+  CLEAR_COMPLETED: "Удалить все выполененные",
 };

@@ -47,9 +47,11 @@ To deploy app locally download files manually or clone the repository. Install a
 
 ### Todo
 
-- [] make custom checkbox styles
-- [] add animations
-- [] fix broken test
+* [ ] make custom checkbox styles
+
+* [ ] add animations
+
+* [ ] fix broken test
 
 ## Author
 
