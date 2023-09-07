@@ -19,8 +19,9 @@ Users should be able to:
 - Add new items to the list
 - Delete items from the list
 - Delete all completed items at once
-- See items on list even after refresh
+- Keep store of todos after closing browser or refreshing page
 - Sort by status
+- Delete all finished todos
 
 Technical requirements:
 
@@ -47,9 +48,11 @@ To deploy app locally download files manually or clone the repository. Install a
 
 ### Todo
 
-- [] make custom checkbox styles
-- [] add animations
-- [] fix broken test
+* [ ] make custom checkbox styles
+
+* [ ] add animations
+
+* [ ] fix broken test
 
 ## Author
 

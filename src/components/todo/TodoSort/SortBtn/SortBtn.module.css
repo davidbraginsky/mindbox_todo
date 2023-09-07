@@ -1,0 +1,22 @@
+button.btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--grey);
+  transition: color 0.3s ease-in;
+}
+
+button.btn:hover {
+  background-color: transparent;
+  color: var(--light-grey);
+}
+
+button.isActive {
+  color: var(--light-blue);
+  transition: color 0.3s ease-in;
+}
+
+button.isActive:hover {
+  color: var(--light-blue-hover);
+}

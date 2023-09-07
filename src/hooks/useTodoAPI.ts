@@ -5,6 +5,7 @@ import type { OnAddTodoFunc, OnRemoveTodoFunc, OnToggleStatusFunc, OnLoadTodoLis
 import { TODO_LIST_KEY } from "@/utils/Constants";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import MiscUtils from "@/utils/MiscUtils";
+import { DefaultOnClickFunc } from "@/types/types";
 
 type UseTodoAPIFunc = () => UseTodoAPIOutput;
 
@@ -13,6 +14,7 @@ type UseTodoAPIOutput = {
   onRemoveTodo: OnRemoveTodoFunc;
   onToggleStatus: OnToggleStatusFunc;
   loadTodoList: OnLoadTodoListFunc;
+  onClearCompleted: DefaultOnClickFunc;
   localTodoList: TodoData[];
 };
 
@@ -49,7 +51,14 @@ const useTodoAPI: UseTodoAPIFunc = () => {
     dispatch(updateList({ list }));
   };
 
-  return { onAddTodo, onRemoveTodo, onToggleStatus, loadTodoList, localTodoList };
+  const onClearCompleted: DefaultOnClickFunc = () => {
+    const currentTodoList = MiscUtils.getLocalStorageValue<TodoData[]>(TODO_LIST_KEY);
+    const filteredTodoList = currentTodoList.filter((todo) => todo.isCompleted === false);
+    setLocalTodoList(filteredTodoList);
+    dispatch(updateList({ list: filteredTodoList }));
+  };
+
+  return { onAddTodo, onRemoveTodo, onToggleStatus, loadTodoList, onClearCompleted, localTodoList };
 };
 
 export default useTodoAPI;
