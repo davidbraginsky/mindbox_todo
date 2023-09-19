@@ -20,7 +20,6 @@ const todoSlice = createSlice({
   reducers: {
     updateList: (state, action) => {
       state.todoList = action.payload.list;
-      return state;
     },
   },
 });
