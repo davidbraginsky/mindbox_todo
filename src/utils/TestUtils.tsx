@@ -22,7 +22,7 @@ export const setDefaultTodosInLocalStorage = () => {
   localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
 };
 
-export const getDefaultTodosFromLocalStorage = () => {
+export const getDefaultTodosFromLocalStorage = (): TodoData[] => {
   return JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
 };
 

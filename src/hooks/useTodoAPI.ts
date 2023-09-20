@@ -47,7 +47,7 @@ const useTodoAPI: UseTodoAPIFunc = () => {
   };
 
   const loadTodoList: OnLoadTodoListFunc = (list) => {
-    setLocalTodoList(localTodoList);
+    setLocalTodoList(list);
     dispatch(updateList({ list }));
   };
 
