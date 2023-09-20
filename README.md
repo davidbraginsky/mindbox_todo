@@ -52,8 +52,6 @@ To deploy app locally download files manually or clone the repository. Install a
 
 * [ ] add animations
 
-* [ ] fix broken test
-
 ## Author
 
 [@davidbraginsky](https://github.com/davidbraginsky)
