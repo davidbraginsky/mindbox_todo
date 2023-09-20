@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import type { TodoData } from "@/store/features/todo/todoSlice";
-import { TODO_TEST_LABEL } from "@/utils/Constants";
+import { TODO_TEST_LABEL, TODO_LIST_KEY, EMPTY_STRING } from "@/utils/Constants";
 
 type AddTextToInputProps = {
   node: Element;
@@ -16,6 +16,14 @@ export const renderWithProvider = (component: ReactNode) => {
 
 export const addTextToInput = ({ node, label }: AddTextToInputProps) => {
   fireEvent.change(node, { target: { value: label } });
+};
+
+export const setDefaultTodosInLocalStorage = () => {
+  localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+};
+
+export const getDefaultTodosFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
 };
 
 export const MOCK_TODO_LIST: TodoData[] = [

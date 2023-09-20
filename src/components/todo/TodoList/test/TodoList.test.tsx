@@ -1,25 +1,27 @@
 import { render, screen } from "@testing-library/react";
-import { TodoData } from "@/store/features/todo/todoSlice";
 import TodoList from "@/components/todo/TodoList/TodoList";
-import { EMPTY_STRING } from "@/utils/Constants";
+import { TODO_TEST_LABEL } from "@/utils/Constants";
+import { setDefaultTodosInLocalStorage, getDefaultTodosFromLocalStorage, MOCK_TODO_LIST } from "@/utils/TestUtils";
 
-const MOCK_TODO_LIST: TodoData[] = [
-  { id: "1", text: "hello world", isCompleted: false },
-  { id: "2", text: "hello everybody", isCompleted: false },
-  { id: "3", text: "hello guys", isCompleted: true },
-];
+describe("TodoList", () => {
+  afterEach(() => {
+    localStorage.clear();
+  });
 
-describe("TodoList", async () => {
   it("renders passed list", () => {
     render(<TodoList list={MOCK_TODO_LIST} />);
-    const todoItem = screen.getByText("hello world");
+
+    const todoItem = screen.getByText(`${TODO_TEST_LABEL} hello`);
+
     expect(todoItem).toBeVisible();
   });
 
   it("renders todos from localStorage", () => {
-    localStorage.setItem("todos", JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     render(<TodoList list={MOCK_TODO_LIST} />);
-    const todos = JSON.parse(localStorage.getItem("todos") || EMPTY_STRING);
+
+    const todos = getDefaultTodosFromLocalStorage();
+
     expect(todos).toEqual(MOCK_TODO_LIST);
   });
 });

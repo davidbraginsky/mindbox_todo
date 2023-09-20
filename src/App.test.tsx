@@ -2,9 +2,15 @@ import { screen, fireEvent, act } from "@testing-library/react";
 import App from "./App";
 import { LabelsProvider } from "@/L10N/LabelsProvider";
 import { EMPTY_STRING, TODO_LIST_KEY, TODO_TEST_LABEL, DEFAULT_TODO_REGEX } from "@/utils/Constants";
-import { renderWithProvider, addTextToInput, MOCK_TODO_LIST } from "@/utils/TestUtils";
+import {
+  renderWithProvider,
+  addTextToInput,
+  setDefaultTodosInLocalStorage,
+  getDefaultTodosFromLocalStorage,
+  MOCK_TODO_LIST,
+} from "@/utils/TestUtils";
 
-describe("App", async () => {
+describe("App", () => {
   afterEach(() => {
     localStorage.clear();
   });
@@ -45,7 +51,7 @@ describe("App", async () => {
       fireEvent.click(addBtn);
     });
 
-    const localTodos = JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
+    const localTodos = getDefaultTodosFromLocalStorage();
     const todoText = localTodos[0].text;
 
     expect(todoText).toBe(TODO_TEST_LABEL);
@@ -114,7 +120,7 @@ describe("App", async () => {
   });
 
   it("deleting todo removes it from localStorage", () => {
-    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     renderWithProvider(<App />);
 
     const deleteBtns = screen.getAllByText(LabelsProvider.DELETE);
@@ -122,14 +128,14 @@ describe("App", async () => {
       fireEvent.click(deleteBtns[0]);
     });
 
-    const localTodos = JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
+    const localTodos = getDefaultTodosFromLocalStorage();
 
     // we initially had 3 todos in our mock list and removing one should result in 2
     expect(localTodos.length).toBe(2);
   });
 
   it("deleting todo removes it from list", () => {
-    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     renderWithProvider(<App />);
 
     const deleteBtns = screen.getAllByText(LabelsProvider.DELETE);
@@ -160,7 +166,7 @@ describe("App", async () => {
   });
 
   it("toggled todo is updated in localStorage", () => {
-    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     renderWithProvider(<App />);
 
     const checkboxes = screen.getAllByRole("checkbox");
@@ -168,7 +174,7 @@ describe("App", async () => {
       fireEvent.click(checkboxes[0]);
     });
 
-    const localTodos = JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
+    const localTodos = getDefaultTodosFromLocalStorage();
 
     // initially, our first todo had a status of isCompleted: false
     // and clicking on the checkbox should switch it to true
@@ -176,7 +182,7 @@ describe("App", async () => {
   });
 
   it("displays all todos by default", async () => {
-    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     renderWithProvider(<App />);
 
     const todoElements = screen.getAllByText(DEFAULT_TODO_REGEX);
@@ -193,7 +199,7 @@ describe("App", async () => {
   });
 
   it("shows only active todos if filtered by 'only active' ", async () => {
-    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     renderWithProvider(<App />);
 
     const sortBtn = screen.getByText(LabelsProvider.ONLY_ACTIVE);
@@ -216,7 +222,7 @@ describe("App", async () => {
   });
 
   it("shows only active todos if filtered by 'only active' ", async () => {
-    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     renderWithProvider(<App />);
 
     const sortBtn = screen.getByText(LabelsProvider.ONLY_COMPLETED);
@@ -239,7 +245,7 @@ describe("App", async () => {
   });
 
   it("removes all completed todos if 'clear completed' was pushed ", async () => {
-    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(MOCK_TODO_LIST));
+    setDefaultTodosInLocalStorage();
     renderWithProvider(<App />);
 
     const clearBtn = screen.getByText(LabelsProvider.CLEAR_COMPLETED);
