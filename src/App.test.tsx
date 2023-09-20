@@ -1,20 +1,14 @@
 import { screen, fireEvent } from "@testing-library/react";
-import type { TodoData } from "@/store/features/todo/todoSlice";
 import App from "./App";
 import { LabelsProvider } from "@/L10N/LabelsProvider";
 import { EMPTY_STRING, TODO_LIST_KEY, TODO_TEST_LABEL, DEFAULT_TODO_REGEX } from "@/utils/Constants";
-import { renderWithProvider, addTextToInput } from "@/utils/TestUtils";
-
-const mockTodoList: TodoData[] = [
-  { id: "1", text: `${TODO_TEST_LABEL} hello`, isCompleted: false },
-  { id: "2", text: `${TODO_TEST_LABEL} world`, isCompleted: false },
-  { id: "3", text: `${TODO_TEST_LABEL} again`, isCompleted: true },
-];
+import { renderWithProvider, addTextToInput, mockTodoList } from "@/utils/TestUtils";
 
 describe("App", async () => {
   afterEach(() => {
     localStorage.clear();
   });
+
   it("renders add btn", () => {
     renderWithProvider(<App />);
 
@@ -35,7 +29,7 @@ describe("App", async () => {
     renderWithProvider(<App />);
 
     const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
+    addTextToInput({ node: inputField, label: TODO_TEST_LABEL });
 
     expect(inputField.value).toBe(TODO_TEST_LABEL);
   });
@@ -46,7 +40,7 @@ describe("App", async () => {
     const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
     const addBtn = screen.getByText(LabelsProvider.ADD);
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
+    addTextToInput({ node: inputField, label: TODO_TEST_LABEL });
     addBtn.click();
 
     const localTodos = JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
@@ -61,7 +55,7 @@ describe("App", async () => {
     const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
     const addBtn = screen.getByText(LabelsProvider.ADD);
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
+    addTextToInput({ node: inputField, label: TODO_TEST_LABEL });
     await addBtn.click();
 
     const todoElement = screen.getByText(TODO_TEST_LABEL);
@@ -75,7 +69,7 @@ describe("App", async () => {
     const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
     const addBtn = screen.getByText(LabelsProvider.ADD);
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
+    addTextToInput({ node: inputField, label: TODO_TEST_LABEL });
     await addBtn.click();
 
     expect(inputField.value).toBe(EMPTY_STRING);
@@ -87,7 +81,7 @@ describe("App", async () => {
     const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
     const addBtn = screen.getByText(LabelsProvider.ADD);
 
-    addTextToInput({node: inputField, label: EMPTY_STRING})
+    addTextToInput({ node: inputField, label: EMPTY_STRING });
     await addBtn.click();
 
     const validationMessage = screen.getByText(LabelsProvider.INPUT_MUST_NOT_BE_EMPTY);
@@ -101,7 +95,7 @@ describe("App", async () => {
     const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
     const addBtn = screen.getByText(LabelsProvider.ADD);
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
+    addTextToInput({ node: inputField, label: TODO_TEST_LABEL });
     await addBtn.click();
 
     const deleteBtn = screen.getByText(LabelsProvider.DELETE);
@@ -110,31 +104,29 @@ describe("App", async () => {
   });
 
   it("deleting todo removes it from localStorage", async () => {
+    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(mockTodoList));
     renderWithProvider(<App />);
 
-    const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
-    const addBtn = screen.getByText(LabelsProvider.ADD);
+    const deleteBtns = screen.getAllByText(LabelsProvider.DELETE);
+    await deleteBtns[0].click();
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
-    await addBtn.click();
+    const localTodos = JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
 
-    const deleteBtn = screen.getByText(LabelsProvider.DELETE);
-
-    expect(deleteBtn).toBe(123);
+    // we initially had 3 todos in our mock list and removing one should result in 2
+    expect(localTodos.length).toBe(2);
   });
 
   it("deleting todo removes it from list", async () => {
+    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(mockTodoList));
     renderWithProvider(<App />);
 
-    const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
-    const addBtn = screen.getByText(LabelsProvider.ADD);
+    const deleteBtns = screen.getAllByText(LabelsProvider.DELETE);
+    await deleteBtns[0].click();
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
-    await addBtn.click();
+    const todoElements = screen.getAllByText(DEFAULT_TODO_REGEX);
 
-    const deleteBtn = screen.getByText(LabelsProvider.DELETE);
-
-    expect(deleteBtn).toBe(123);
+    // we initially had 3 todos in our mock list and removing one should result in 2
+    expect(todoElements.length).toBe(2);
   });
 
   it("added todo has toggle checkbox", async () => {
@@ -143,7 +135,7 @@ describe("App", async () => {
     const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
     const addBtn = screen.getByText(LabelsProvider.ADD);
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
+    addTextToInput({ node: inputField, label: TODO_TEST_LABEL });
     await addBtn.click();
 
     const checkbox = screen.getByRole("checkbox");
@@ -152,31 +144,17 @@ describe("App", async () => {
   });
 
   it("toggled todo is updated in localStorage", async () => {
+    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(mockTodoList));
     renderWithProvider(<App />);
 
-    const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
-    const addBtn = screen.getByText(LabelsProvider.ADD);
+    const checkboxes = screen.getAllByRole("checkbox");
+    await checkboxes[0].click();
 
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
-    await addBtn.click();
+    const localTodos = JSON.parse(localStorage.getItem(TODO_LIST_KEY) || EMPTY_STRING);
 
-    const checkbox = screen.getByRole("checkbox");
-
-    expect(checkbox).toBe(444);
-  });
-
-  it("toggled todo is displayed on screen", async () => {
-    renderWithProvider(<App />);
-
-    const inputField = screen.getByPlaceholderText(LabelsProvider.NEW_TODO) as HTMLInputElement;
-    const addBtn = screen.getByText(LabelsProvider.ADD);
-
-    addTextToInput({node: inputField, label: TODO_TEST_LABEL})
-    await addBtn.click();
-
-    const checkbox = screen.getByRole("checkbox");
-
-    expect(checkbox).toBe(666);
+    // initially, our first todo had a status of isCompleted: false
+    // and clicking on the checkbox should switch it to true
+    expect(localTodos[0].isCompleted).toBe(true);
   });
 
   it("displays all todos by default", async () => {
@@ -247,7 +225,7 @@ describe("App", async () => {
 
     const todoElements = screen.getAllByText(DEFAULT_TODO_REGEX);
     // we have 2 todos with isCompleted: true in mock data and that's why we check for that number
-    
+
     expect(todoElements.length).toBe(2);
   });
 });
