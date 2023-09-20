@@ -1,13 +1,12 @@
 import { screen, fireEvent, act } from "@testing-library/react";
 import App from "./App";
 import { LabelsProvider } from "@/L10N/LabelsProvider";
-import { EMPTY_STRING, TODO_LIST_KEY, TODO_TEST_LABEL, DEFAULT_TODO_REGEX } from "@/utils/Constants";
+import { EMPTY_STRING, TODO_TEST_LABEL, DEFAULT_TODO_REGEX } from "@/utils/Constants";
 import {
   renderWithProvider,
   addTextToInput,
   setDefaultTodosInLocalStorage,
   getDefaultTodosFromLocalStorage,
-  MOCK_TODO_LIST,
 } from "@/utils/TestUtils";
 
 describe("App", () => {
